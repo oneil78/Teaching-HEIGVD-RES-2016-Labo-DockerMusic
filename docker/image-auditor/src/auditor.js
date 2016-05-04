@@ -17,7 +17,7 @@ net.createServer(function(sock) {
         console.log('TCP connection : active musician sent');
         console.log();
 
-		var tabMusician = {"uuid":"", "instrument":"", "activeSince":""};
+		var tabMusician = {};
 		var tabMusicians = [];
 		for (var key in activeMusicians) {
 			tabMusician["uuid"] = activeMusicians[key].uuid;
