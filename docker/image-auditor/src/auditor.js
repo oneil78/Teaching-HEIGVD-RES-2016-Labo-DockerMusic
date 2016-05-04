@@ -20,9 +20,9 @@ net.createServer(function(sock) {
 		var tabMusician = {"instrument":"", "uuid":"", "activeSince":""};
 		var tabMusicians = [];
 		for (var key in activeMusicians) {
-			tabMusician[instrument] = activeMusicians[key].instrument;
-			tabMusician[uuid] = activeMusicians[key].uuid;
-			tabMusician[activeSince] = activeMusicians[key].activeSince;
+			tabMusician["instrument"] = activeMusicians[key].instrument;
+			tabMusician["uuid"] = activeMusicians[key].uuid;
+			tabMusician["activeSince"] = activeMusicians[key].activeSince;
 			tabMusicians.push(tabMusician);
 		}
         // Write the data back to the socket, the client will receive it as data from the server
