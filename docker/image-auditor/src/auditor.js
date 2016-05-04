@@ -24,6 +24,7 @@ net.createServer(function(sock) {
 			tabMusician["instrument"] = activeMusicians[key].instrument;
 			tabMusician["activeSince"] = activeMusicians[key].activeSince;
 			tabMusicians.push(tabMusician);
+			console.log(key);
 		}
         // Write the data back to the socket, the client will receive it as data from the server
         sock.write(JSON.stringify(tabMusicians) + '\n');
