@@ -46,7 +46,7 @@ server.on('message', (payload, rinfo) => {
 	} else {
 		activeMusicians[rinfo.address].lastMessageDate = Date.now();
 	}
-	console.log(`server got: ${payload.message} from ${rinfo.address}:${rinfo.port}`);
+	console.log(`server got: ${(mess + '').split(',')[0]} from ${rinfo.address}:${rinfo.port}`);
 });
 
 server.bind(9907, function() {

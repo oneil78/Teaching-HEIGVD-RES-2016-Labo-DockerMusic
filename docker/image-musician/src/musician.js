@@ -9,7 +9,7 @@ const uuid = require('uuid');
 var instruments = {"piano":"ti-ta-ti","trumpet":"pouet","flute":"trulu","violin":"gzi-gzi","drum":"boum-boum"}
 
 
-const message = new Buffer(instruments[process.argv[2]] + ',' + uuid.v1());
+const message = new Buffer(instruments[process.argv[2]] + ',' + "1234" + uuid.v4());
 const client = dgram.createSocket('udp4');
 setInterval(function (){
 
