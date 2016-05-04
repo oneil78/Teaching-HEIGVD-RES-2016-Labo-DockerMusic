@@ -17,8 +17,12 @@ net.createServer(function(sock) {
         console.log('TCP connection : active musician sent');
         console.log();
 
+		var tabMusician = [];
+		for (var key in activeMusicians) {
+			tabMusician.push(activeMusicians[key]);
+		}
         // Write the data back to the socket, the client will receive it as data from the server
-        sock.write(JSON.stringify(activeMusicians) + '\n');
+        sock.write(JSON.stringify(tabMusician) + '\n');
     });
 
     // Add a 'close' event handler to this instance of socket
