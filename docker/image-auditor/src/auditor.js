@@ -17,11 +17,11 @@ net.createServer(function(sock) {
         console.log('TCP connection : active musician sent');
         console.log();
 
-		var tabMusician = {"instrument":"", "uuid":"", "activeSince":""};
+		var tabMusician = {"uuid":"", "instrument":"", "activeSince":""};
 		var tabMusicians = [];
 		for (var key in activeMusicians) {
-			tabMusician["instrument"] = activeMusicians[key].instrument;
 			tabMusician["uuid"] = activeMusicians[key].uuid;
+			tabMusician["instrument"] = activeMusicians[key].instrument;
 			tabMusician["activeSince"] = activeMusicians[key].activeSince;
 			tabMusicians.push(tabMusician);
 		}
