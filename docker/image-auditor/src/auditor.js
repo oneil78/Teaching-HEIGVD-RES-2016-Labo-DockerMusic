@@ -40,8 +40,9 @@ function Musician(instrument, date, uuid){
 }
 
 server.on('message', (payload, rinfo) => {
+	var mess = payload;
 	if (!activeMusicians[rinfo.address]){
-		activeMusicians[rinfo.address] = new Musician(instruments[payload.split(",")[0]], Date.now(), payload.split(",")[1]);
+		activeMusicians[rinfo.address] = new Musician(instruments[mess.split(",")[0]], Date.now(), mess.split(",")[1]);
 	} else {
 		activeMusicians[rinfo.address].lastMessageDate = Date.now();
 	}
