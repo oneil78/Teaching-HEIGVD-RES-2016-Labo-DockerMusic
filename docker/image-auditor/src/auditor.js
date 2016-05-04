@@ -17,6 +17,9 @@ net.createServer(function(sock) {
 
         // Write the data back to the socket, the client will receive it as data from the server
         sock.write(JSON.stringify(activeMusicians));
+		if (data == 'q'){
+			sock.close();
+		}
     });
 
     // Add a 'close' event handler to this instance of socket
