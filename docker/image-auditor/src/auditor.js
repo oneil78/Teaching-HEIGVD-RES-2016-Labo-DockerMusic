@@ -19,7 +19,10 @@ net.createServer(function(sock) {
 
 		var tabMusician = [];
 		for (var key in activeMusicians) {
-			tabMusician.push(activeMusicians[key]);
+			if (key != "lastMessageDate"){
+				tabMusician.push(activeMusicians[key]);
+			}
+			
 		}
         // Write the data back to the socket, the client will receive it as data from the server
         sock.write(JSON.stringify(tabMusician) + '\n');
