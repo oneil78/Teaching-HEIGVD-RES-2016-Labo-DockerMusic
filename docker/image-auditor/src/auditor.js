@@ -16,9 +16,9 @@ net.createServer(function(sock) {
 	var tabMusicians = [];
 	for (var key in activeMusicians) {
 		var tabMusician = {};
-		tabMusician["\nuuid"] = activeMusicians[key].uuid;
-		tabMusician["\ninstrument"] = activeMusicians[key].instrument;
-		tabMusician["\nactiveSince"] = activeMusicians[key].activeSince;
+		tabMusician["uuid"] = activeMusicians[key].uuid;
+		tabMusician["instrument"] = activeMusicians[key].instrument;
+		tabMusician["activeSince"] = activeMusicians[key].activeSince;
 		tabMusicians.push(tabMusician);
 	}
 	// Write the data back to the socket, the client will receive it as data from the server
@@ -32,20 +32,20 @@ const server = dgram.createSocket('udp4');
 var instruments = {"ti-ta-ti":"piano","pouet":"trumpet","trulu":"flute","gzi-gzi":"violin","boum-boum":"drum"};
 var activeMusicians = {};
 
-function Musician(instrument, date){
+function Musician(instrument, date, uuid){
 	this.instrument = instrument;
-	this.uuid = generateUUID();
+	this.uuid = uuid;
 	this.lastMessageDate = date;
 	this.activeSince = new Date(date).toUTCString();
 }
 
-server.on('message', (msg, rinfo) => {
+server.on('message', (payload, rinfo) => {
 	if (!activeMusicians[rinfo.address]){
-		activeMusicians[rinfo.address] = new Musician(instruments[msg], Date.now());
+		activeMusicians[rinfo.address] = new Musician(instruments[payload.split(",")[0]], Date.now(), payload.split(",")[1]);
 	} else {
 		activeMusicians[rinfo.address].lastMessageDate = Date.now();
 	}
-	console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+	console.log(`server got: ${payload.message} from ${rinfo.address}:${rinfo.port}`);
 });
 
 server.bind(9907, function() {
@@ -55,7 +55,7 @@ server.addMembership('239.255.22.5');});
 process.on('SIGINT', function() {
   process.exit();
  });
- 
+ /*
 function generateUUID(){
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -65,7 +65,7 @@ function generateUUID(){
     });
     return uuid;
 }
-
+*/
 setInterval(function (){
 	if (!Object.keys(activeMusicians).length && !active){
 		console.log(`No active musician`);
