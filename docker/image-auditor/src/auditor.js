@@ -18,7 +18,7 @@ net.createServer(function(sock) {
         console.log();
 
         // Write the data back to the socket, the client will receive it as data from the server
-        sock.write(JSON.stringify(activeMusicians));
+        sock.write(JSON.stringify(activeMusicians) + '\n');
     });
 
     // Add a 'close' event handler to this instance of socket
@@ -34,17 +34,16 @@ const server = dgram.createSocket('udp4');
 var instruments = {"ti-ta-ti":"piano","pouet":"trumpet","trulu":"flute","gzi-gzi":"violin","boum-boum":"drum"};
 var activeMusicians = {};
 
-function Musician(address, instrument, date){
-	this.address = address;
+function Musician(instrument, date){
 	this.instrument = instrument;
 	this.uuid = generateUUID();
 	this.lastMessageDate = date;
-	this.activeSince = date;
+	this.activeSince = new Date(date).toUTCString();
 }
 
 server.on('message', (msg, rinfo) => {
 	if (!activeMusicians[rinfo.address]){
-		activeMusicians[rinfo.address] = new Musician(rinfo.address, instruments[msg], Date.now());
+		activeMusicians[rinfo.address] = new Musician(instruments[msg], Date.now());
 	} else {
 		activeMusicians[rinfo.address].lastMessageDate = Date.now();
 	}
@@ -70,7 +69,7 @@ function generateUUID(){
 }
 
 setInterval(function (){
-	if (activeMusicians.length === 0 && !active){
+	if (!Object.keys(activeMusicians).length && !active){
 		console.log(`No active musician`);
 		active = true;
 	} else {
@@ -79,7 +78,7 @@ setInterval(function (){
 			if (Date.now() - activeMusicians[key].lastMessageDate > 10000) {
 			delete activeMusicians[key];
 		}
-		active = true;
+		active = false;
 	}
 	
 	
