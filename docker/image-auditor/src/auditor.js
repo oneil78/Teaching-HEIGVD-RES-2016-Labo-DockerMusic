@@ -17,15 +17,16 @@ net.createServer(function(sock) {
         console.log('TCP connection : active musician sent');
         console.log();
 
-		var tabMusician = [];
+		var tabMusician = {"instrument":"", "uuid":"", "activeSince":""};
+		var tabMusicians = [];
 		for (var key in activeMusicians) {
-			if (key != "lastMessageDate"){
-				tabMusician.push(activeMusicians[key]);
-			}
-			
+			tabMusician[instrument] = activeMusicians[key].instrument;
+			tabMusician[uuid] = activeMusicians[key].uuid;
+			tabMusician[activeSince] = activeMusicians[key].activeSince;
+			tabMusicians.push(tabMusician);
 		}
         // Write the data back to the socket, the client will receive it as data from the server
-        sock.write(JSON.stringify(tabMusician) + '\n');
+        sock.write(JSON.stringify(tabMusicians) + '\n');
     });
 
     // Add a 'close' event handler to this instance of socket
