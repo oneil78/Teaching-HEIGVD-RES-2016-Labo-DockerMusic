@@ -13,4 +13,3 @@ process.on('SIGINT', function() {
   process.exit();
  });
 
-// server listening 0.0.0.0:41234
