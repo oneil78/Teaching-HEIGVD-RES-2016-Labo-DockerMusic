@@ -1,9 +1,6 @@
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 
-var dateFormat = require('dateformat');
-
-
 var instruments = {"ti-ta-ti":"piano","pouet":"trumpet","trulu":"flute","gzi-gzi":"violin","boum-boum":"drum"};
 var activeMusicians = {};
 
