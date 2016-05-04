@@ -41,7 +41,7 @@ function generateUUID(){
 
 setInterval(function (){
 	for (var key in activeMusicians) {
-		console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${dateFormat(activeMusicians[key].activeSince}`);
+		console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
 		if (Date.now() - activeMusicians[key].lastMessageDate > 10000) {
 		delete activeMusicians[key];
 	}
