@@ -12,12 +12,11 @@ net.createServer(function(sock) {
     // Add a 'data' event handler to this instance of socket
     sock.on('data', function(data) {
 
-        console.log('DATA ' + sock.remoteAddress + ':');
-        console.log(data);
+        console.log('TCP connection : active musician sent');
         console.log();
 
         // Write the data back to the socket, the client will receive it as data from the server
-        sock.write('You said "' + data + '"');
+        sock.write(JSON.stringify(activeMusicians));
     });
 
     // Add a 'close' event handler to this instance of socket
@@ -70,7 +69,7 @@ function generateUUID(){
 
 setInterval(function (){
 	for (var key in activeMusicians) {
-		console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
+		//console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
 		if (Date.now() - activeMusicians[key].lastMessageDate > 10000) {
 		delete activeMusicians[key];
 	}
