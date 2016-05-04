@@ -1,6 +1,8 @@
 var net = require('net');
 var HOST = '172.17.0.2';
 var PORT = 2205;
+
+var active = false;
 // Create a server instance, and chain the listen function to it
 // The function passed to net.createServer() becomes the event handler for the 'connection' event
 // The sock object the callback function receives UNIQUE for each connection
@@ -17,9 +19,6 @@ net.createServer(function(sock) {
 
         // Write the data back to the socket, the client will receive it as data from the server
         sock.write(JSON.stringify(activeMusicians));
-		if (data == 'q'){
-			sock.close();
-		}
     });
 
     // Add a 'close' event handler to this instance of socket
@@ -71,11 +70,19 @@ function generateUUID(){
 }
 
 setInterval(function (){
-	for (var key in activeMusicians) {
-		//console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
-		if (Date.now() - activeMusicians[key].lastMessageDate > 10000) {
-		delete activeMusicians[key];
+	if (activeMusicians.length === 0 && !active){
+		console.log(`No active musician`);
+		active = true;
+	} else {
+		for (var key in activeMusicians) {
+			//console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
+			if (Date.now() - activeMusicians[key].lastMessageDate > 10000) {
+			delete activeMusicians[key];
+		}
+		active = true;
 	}
+	
+	
 }
 
 }, 1000);
