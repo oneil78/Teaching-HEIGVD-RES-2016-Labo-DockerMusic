@@ -4,6 +4,6 @@ MAINTAINER Christophe Peretti
 #
 # When we build the image, we copy the executable jar in the image file system. 
 #
-#COPY src /opt/app/
+COPY src /opt/app/
 
-ENTRYPOINT ["node", "musician.js"]
+ENTRYPOINT ["node", "/opt/app/musician.js"]
