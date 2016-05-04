@@ -2,14 +2,14 @@
 * We use a standard Node.js module to work with UDP
 */
 const dgram = require('dgram');
-const uuid = require('uuid');
+var uuid = require('uuid');
 /*
 * Let's create a datagram socket. We will use it to send our UDP datagrams
 */
 var instruments = {"piano":"ti-ta-ti","trumpet":"pouet","flute":"trulu","violin":"gzi-gzi","drum":"boum-boum"}
 
 
-const message = new Buffer(instruments[process.argv[2]] + ',' + "1234" + uuid.v4());
+const message = new Buffer(instruments[process.argv[2]] + ',' + uuid.v4());
 const client = dgram.createSocket('udp4');
 setInterval(function (){
 
