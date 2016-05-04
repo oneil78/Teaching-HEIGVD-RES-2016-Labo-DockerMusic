@@ -24,11 +24,10 @@ net.createServer(function(sock) {
 			tabMusician["instrument"] = activeMusicians[key].instrument;
 			tabMusician["activeSince"] = activeMusicians[key].activeSince;
 			tabMusicians.push(tabMusician);
-			console.log(activeMusicians[key].instrument);
 		}
         // Write the data back to the socket, the client will receive it as data from the server
         sock.write(JSON.stringify(tabMusicians) + '\n');
-		console.log(JSON.stringify(tabMusicians));
+		sock.close();
     });
 
     // Add a 'close' event handler to this instance of socket
