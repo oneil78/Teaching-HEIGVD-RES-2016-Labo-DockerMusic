@@ -1,7 +1,7 @@
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 
-var instruments = {"ti-ta-ti":"piano","pouet":"trumpet":,"trulu":"flute","gzi-gzi":"violin","boum-boum":"drum"}
+var instruments = {"ti-ta-ti":"piano","pouet":"trumpet","trulu":"flute","gzi-gzi":"violin","boum-boum":"drum"};
 var activeMusicians = {};
 
 function Musician(address, instrument, date){
@@ -30,9 +30,6 @@ process.on('SIGINT', function() {
  
 function generateUUID(){
     var d = new Date().getTime();
-    if(window.performance && typeof window.performance.now === "function"){
-        d += performance.now(); //use high-precision timer if available
-    }
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = (d + Math.random()*16)%16 | 0;
         d = Math.floor(d/16);
@@ -43,11 +40,9 @@ function generateUUID(){
 
 setInterval(function (){
 	for (var key in activeMusicians) {
-		console.log(`active musician: ${activeMusicians[key]} : ${activeMusicians[key].instrument}:${activeMusicians[key].uuid}`);
-		if (Date.now() - activeMusicians[key] > 10000) {
-		delete activeMusicians[key];
-		delete musicians[key];
-		
+		console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].date).toUTCString()}`);
+		if (Date.now() - activeMusicians[key].date > 10000) {
+		delete activeMusicians[key];		
 	}
 }
 
