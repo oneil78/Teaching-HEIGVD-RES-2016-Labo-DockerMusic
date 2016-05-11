@@ -36,7 +36,7 @@ function Musician(instrument, date, uuid){
 	this.instrument = instrument;
 	this.uuid = uuid;
 	this.lastMessageDate = date;
-	this.activeSince = new Date(date).toUTCString();
+	this.activeSince = date; //new Date(date).toUTCString();
 }
 
 server.on('message', (payload, rinfo) => {
@@ -44,9 +44,9 @@ server.on('message', (payload, rinfo) => {
 	var moment = require('moment');
 	moment().format();
 	if (!activeMusicians[rinfo.address]){
-		activeMusicians[rinfo.address] = new Musician(instruments[(mess + '').split(',')[0]], moment, (mess + '').split(',')[1]);
+		activeMusicians[rinfo.address] = new Musician(instruments[(mess + '').split(',')[0]], moment(), (mess + '').split(',')[1]);
 	} else {
-		activeMusicians[rinfo.address].lastMessageDate = moment;
+		activeMusicians[rinfo.address].lastMessageDate = moment();
 	}
 	console.log(`server got: ${(mess + '').split(',')[0]} from ${rinfo.address}:${rinfo.port}`);
 });
@@ -76,9 +76,8 @@ setInterval(function (){
 	} else {
 		for (var key in activeMusicians) {
 			var moment = require('moment');
-			moment().format();
 			//console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
-			if (moment - activeMusicians[key].lastMessageDate > 10000) {
+			if (moment() - activeMusicians[key].lastMessageDate > 10000) {
 			delete activeMusicians[key];
 		}
 		active = false;
