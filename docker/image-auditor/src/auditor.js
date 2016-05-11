@@ -1,5 +1,4 @@
 var net = require('net');
-var HOST = '172.17.0.2';
 var PORT = 2205;
 
 var active = false;
@@ -22,9 +21,10 @@ net.createServer(function(sock) {
 		tabMusicians.push(tabMusician);
 	}
 	// Write the data back to the socket, the client will receive it as data from the server
-	sock.write(JSON.stringify(tabMusicians) + '\n');
+	sock.write(JSON.stringify(tabMusicians));
+	sock.end();
 
-}).listen(PORT, HOST);
+}).listen(PORT);
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
@@ -66,7 +66,7 @@ setInterval(function (){
 		for (var key in activeMusicians) {
 			var moment = require('moment');
 			//console.log(`active musician: ${activeMusicians[key].address} : ${activeMusicians[key].instrument}:${new Date(activeMusicians[key].activeSince).toUTCString()}`);
-			if (moment() - activeMusicians[key].lastMessageDate > 10000) {
+			if (moment() - activeMusicians[key].lastMessageDate > 5000) {
 			delete activeMusicians[key];
 		}
 		active = false;
