@@ -1,0 +1,45 @@
+origin	https://github.com/oneil78/Teaching-HEIGVD-RES-2016-Labo-DockerMusic.git (fetch)
+origin	https://github.com/oneil78/Teaching-HEIGVD-RES-2016-Labo-DockerMusic.git (push)
+upstream	https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2016-Labo-DockerMusic.git (fetch)
+upstream	https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2016-Labo-DockerMusic.git (push)
+Starting auditor container "990362da54fb9e532694d83fdfce4350823d5c44e282ce3b5fd5f02f8b2b3d5c"
+Starting auditor container "524fe2348aa346643c8e5272b2d0d2154a3e31799d9c9b0cb4c4151b4e727a03"
+Starting auditor container "40dfb7af294097355ae91c0ea9bbe4071f31a2c1d1d40673c6dbdddcfa430928"
+Starting auditor container "5f21e7b5360ab673ed1f8d3408c7ae7b4d6a42f59b42aa7e59b1c741ae9a8a4d"
+Starting auditor container "d781ce68129c2d68813e012836a4602ae6fa91a2c1fe4e0c62e04cdfd344e958"
+Starting auditor container "d276c013aea3121ab66a915d1d235f408c89264a13b23921b54bace8143f5b77"
+Starting auditor container "b6df89cedb60ce0763d7711d37b364b2382af13c04b01acf8a86c7107a060d42"
+Starting auditor container "6596491d4b23596cc1d59656c6b215733d1e7977cf40543d72dfb934a60bc506"
+Starting auditor container "acd532813cdbad41e49b0b6865c1f43880d43532db299941c7af0295898ae46a"
+Starting auditor container "1720a83acd7a6e01427b14fe0cc40422ea19ff1517e0d534e37caba4b49e3312"
+Starting auditor container "169cdc130de91f24f815de13f854927f144d153fb1f86d38c03635d8b896692f"
+11 containers have been started.
+990362da54fb9e532694d83fdfce4350823d5c44e282ce3b5fd5f02f8b2b3d5c : /opt/app/musician.js,violin
+169cdc130de91f24f815de13f854927f144d153fb1f86d38c03635d8b896692f : /opt/app/musician.js,piano
+1720a83acd7a6e01427b14fe0cc40422ea19ff1517e0d534e37caba4b49e3312 : /opt/app/musician.js,trumpet
+acd532813cdbad41e49b0b6865c1f43880d43532db299941c7af0295898ae46a : /opt/app/musician.js,piano
+6596491d4b23596cc1d59656c6b215733d1e7977cf40543d72dfb934a60bc506 : /opt/app/musician.js,trumpet
+b6df89cedb60ce0763d7711d37b364b2382af13c04b01acf8a86c7107a060d42 : /opt/app/musician.js,flute
+d276c013aea3121ab66a915d1d235f408c89264a13b23921b54bace8143f5b77 : /opt/app/musician.js,drum
+d781ce68129c2d68813e012836a4602ae6fa91a2c1fe4e0c62e04cdfd344e958 : /opt/app/musician.js,violin
+5f21e7b5360ab673ed1f8d3408c7ae7b4d6a42f59b42aa7e59b1c741ae9a8a4d : /opt/app/musician.js,flute
+40dfb7af294097355ae91c0ea9bbe4071f31a2c1d1d40673c6dbdddcfa430928 : /opt/app/musician.js,piano
+524fe2348aa346643c8e5272b2d0d2154a3e31799d9c9b0cb4c4151b4e727a03 : /opt/app/auditor.js
+Auditor validation: success: ["drum","flute","flute","piano","piano","piano","trumpet","trumpet","violin","violin"]
+There are 10 musicians, let's kill one
+killed 40dfb7af294097355ae91c0ea9bbe4071f31a2c1d1d40673c6dbdddcfa430928
+Auditor validation: success: ["drum","flute","flute","piano","piano","trumpet","trumpet","violin","violin"]
+Scheduling a new test
+There are 9 musicians, let's kill one
+killed b6df89cedb60ce0763d7711d37b364b2382af13c04b01acf8a86c7107a060d42
+Auditor validation: success: ["drum","flute","piano","piano","trumpet","trumpet","violin","violin"]
+Scheduling a new test
+There are 8 musicians, let's kill one
+killed 169cdc130de91f24f815de13f854927f144d153fb1f86d38c03635d8b896692f
+Auditor validation: success: ["drum","flute","piano","trumpet","trumpet","violin","violin"]
+Scheduling a new test
+There are 7 musicians, let's kill one
+killed d781ce68129c2d68813e012836a4602ae6fa91a2c1fe4e0c62e04cdfd344e958
+Auditor validation: success: ["drum","flute","piano","trumpet","trumpet","violin"]
+Scheduling a new test
+We have done all tests.
