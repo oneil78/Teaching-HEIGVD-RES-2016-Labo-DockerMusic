@@ -6,4 +6,6 @@ MAINTAINER Christophe Peretti
 #
 COPY src /opt/app/
 EXPOSE 2205
+
+RUN ["npm", "install", "moment", "--save"]
 CMD ["node", "/opt/app/auditor.js"]
