@@ -42,7 +42,6 @@ function Musician(instrument, date, uuid){
 server.on('message', (payload, rinfo) => {
 	var mess = payload;
 	var moment = require('moment');
-	moment().format();
 	if (!activeMusicians[rinfo.address]){
 		activeMusicians[rinfo.address] = new Musician(instruments[(mess + '').split(',')[0]], moment(), (mess + '').split(',')[1]);
 	} else {
